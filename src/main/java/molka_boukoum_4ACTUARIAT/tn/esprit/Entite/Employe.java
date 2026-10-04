@@ -6,12 +6,12 @@ import lombok.*;
 import molka_boukoum_4ACTUARIAT.tn.esprit.Enum.RoleEmploye;
 
 @Entity
-@Table(name = "employe")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@EqualsAndHashCode
 public class Employe {
 
     @Id
@@ -19,8 +19,13 @@ public class Employe {
     private Long idEmploye;
 
     private String nom;
+
     private String prenom;
 
     @Enumerated(EnumType.STRING)
     private RoleEmploye role;
+
+    @ManyToOne
+
+    private Agence agence;
 }

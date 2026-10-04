@@ -1,18 +1,20 @@
 package molka_boukoum_4ACTUARIAT.tn.esprit.Entite;
 
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "client")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@EqualsAndHashCode
 public class Client {
 
     @Id
@@ -20,9 +22,20 @@ public class Client {
     private Long idClient;
 
     private String nom;
+
     private String prenom;
+
     private String email;
+
     private String telephone;
+
     private String numPermis;
+
     private LocalDate dateInscription;
+
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations;
+
+    @OneToOne(mappedBy = "client")
+    private Cantrat contrat;
 }

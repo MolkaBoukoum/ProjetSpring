@@ -1,5 +1,6 @@
 package molka_boukoum_4ACTUARIAT.tn.esprit.Entite;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import molka_boukoum_4ACTUARIAT.tn.esprit.Enum.ModePaiement;
@@ -8,12 +9,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "paiement")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@EqualsAndHashCode
 public class Paiement {
 
     @Id
@@ -21,8 +22,14 @@ public class Paiement {
     private Long idPaiement;
 
     private BigDecimal montant;
+
     private LocalDate datePaiement;
 
     @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
+
+
+    @ManyToOne
+
+    private Cantrat contrat;
 }

@@ -1,18 +1,19 @@
 package molka_boukoum_4ACTUARIAT.tn.esprit.Entite;
 
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "maintenance")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@EqualsAndHashCode
 public class Maintenance {
 
     @Id
@@ -20,6 +21,11 @@ public class Maintenance {
     private Long idMaintenance;
 
     private LocalDate dateDebut;
+
     private LocalDate dateFin;
+
     private String description;
+
+    @ManyToOne
+    private Vehicule vehicule;
 }

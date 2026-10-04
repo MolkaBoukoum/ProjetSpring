@@ -1,16 +1,17 @@
 package molka_boukoum_4ACTUARIAT.tn.esprit.Entite;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "agence")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@EqualsAndHashCode
 public class Agence {
 
     @Id
@@ -18,7 +19,16 @@ public class Agence {
     private Long idAgence;
 
     private String nom;
+
     private String ville;
+
     private String adresse;
+
     private String telephone;
+
+    @OneToMany(mappedBy = "agence")
+    private List<Employe> employes;
+
+    @OneToMany(mappedBy = "agence")
+    private List<Vehicule> vehicules;
 }

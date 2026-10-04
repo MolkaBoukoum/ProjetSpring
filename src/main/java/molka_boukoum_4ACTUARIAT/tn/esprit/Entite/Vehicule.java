@@ -1,20 +1,21 @@
 package molka_boukoum_4ACTUARIAT.tn.esprit.Entite;
 
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import molka_boukoum_4ACTUARIAT.tn.esprit.Enum.CategorieVehicule;
 import molka_boukoum_4ACTUARIAT.tn.esprit.Enum.StatutVehicule;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Table(name = "vehicule")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@ToString
+@EqualsAndHashCode
 public class Vehicule {
 
     @Id
@@ -22,14 +23,30 @@ public class Vehicule {
     private Long idVehicule;
 
     private String immatriculation;
+
     private String marque;
+
     private String modele;
 
     @Enumerated(EnumType.STRING)
     private CategorieVehicule categorie;
 
-    private BigDecimal tarifJournalier;
+    private double tarifJournalier;
 
     @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
+
+    @ManyToOne
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Maintenance> maintenances;
+
+    @ManyToMany
+
+    private List<Equipement> equipements;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations;
 }
