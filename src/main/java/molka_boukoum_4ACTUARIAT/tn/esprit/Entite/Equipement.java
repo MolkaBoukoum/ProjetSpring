@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,5 +23,5 @@ public class Equipement {
     private String libelle;
 
     @ManyToMany(mappedBy = "equipements")
-    private List<Vehicule> vehicules;
+    private Set<Vehicule> vehicules;
 }

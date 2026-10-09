@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,8 +28,8 @@ public class Agence {
     private String telephone;
 
     @OneToMany(mappedBy = "agence")
-    private List<Employe> employes;
+    private Set<Employe> employes;
 
     @OneToMany(mappedBy = "agence")
-    private List<Vehicule> vehicules;
+    private Set<Vehicule> vehicules;
 }

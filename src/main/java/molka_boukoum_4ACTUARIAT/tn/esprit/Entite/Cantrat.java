@@ -8,6 +8,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,7 +21,7 @@ public class Cantrat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idContrat;
+    private Long idContrat; //type wrapper
 
     private LocalDate dateSignature;
 
@@ -29,19 +30,16 @@ public class Cantrat {
     private boolean valide;
 
     @OneToOne
-    @JoinColumn(name = "id_client", unique = true)
     private Client client;
 
     @OneToOne
-    @JoinColumn(name = "id_reservation", unique = true)
     private Reservation reservation;
 
     @OneToMany(
             mappedBy = "contrat",
             cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.PERSIST
             }
     )
-    private List<Paiement> paiements;
+    private Set<Paiement> paiements;
 }

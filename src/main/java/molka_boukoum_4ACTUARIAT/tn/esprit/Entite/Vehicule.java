@@ -8,6 +8,7 @@ import molka_boukoum_4ACTUARIAT.tn.esprit.Enum.CategorieVehicule;
 import molka_boukoum_4ACTUARIAT.tn.esprit.Enum.StatutVehicule;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -41,12 +42,11 @@ public class Vehicule {
     private Agence agence;
 
     @OneToMany(mappedBy = "vehicule")
-    private List<Maintenance> maintenances;
+    private Set<Maintenance> maintenances;
 
     @ManyToMany
-
-    private List<Equipement> equipements;
+    private Set<Equipement> equipements;
 
     @OneToMany(mappedBy = "vehicule")
-    private List<Reservation> reservations;
+    private Set<Reservation> reservations;
 }
